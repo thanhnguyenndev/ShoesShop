@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.example.Shop.entities.ProductsEntity;
 import com.example.Shop.service.IProductService;
 
-@Controller(value = "")
+@Controller
+@RequestMapping("/")
 public class HomeController extends BaseController{
 	
 	@Autowired
