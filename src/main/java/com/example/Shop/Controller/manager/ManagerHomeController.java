@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.example.Shop.Controller.user.BaseController;
 
 @Controller
-@RequestMapping("/admin")
 public class ManagerHomeController extends BaseController {
-	@RequestMapping(value = "/admin/index", method = RequestMethod.GET)
+	@RequestMapping(value = {"/admin/index","/admin"}, method = RequestMethod.GET)
 	public String index(final Model model) {
 		return "manager/index";
 	}

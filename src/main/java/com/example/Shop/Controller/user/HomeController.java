@@ -12,14 +12,13 @@ import com.example.Shop.entities.ProductsEntity;
 import com.example.Shop.service.IProductService;
 
 @Controller
-@RequestMapping("/")
 public class HomeController extends BaseController{
 	
 	@Autowired
 	private IProductService productService;
 	
 	
-	@RequestMapping(value = {"/index"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/index","/"}, method = RequestMethod.GET)
 	public String home(final Model model) {
 		
 		
