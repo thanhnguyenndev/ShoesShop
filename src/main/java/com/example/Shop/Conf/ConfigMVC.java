@@ -19,7 +19,8 @@ public class ConfigMVC implements WebMvcConfigurer,Constant {
 		//classpath: src/main/resources
 		registry.addResourceHandler("/user/**").addResourceLocations("classpath:/static/user/");
 		registry.addResourceHandler("/manager/**").addResourceLocations("classpath:static/manager/");
-		registry.addResourceHandler("/upload/**").addResourceLocations("file:" +"/upload/"); //lấy thư mục
+		registry.addResourceHandler("/upload/**").addResourceLocations("classpath:static/upload/"); //lấy thư mục
+//		registry.addResourceHandler("/upload/**").addResourceLocations("file:" +"/upload/"); //lấy thư mục
 	}
 	
 
