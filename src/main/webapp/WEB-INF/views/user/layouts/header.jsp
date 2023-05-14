@@ -74,16 +74,16 @@
 			<nav class="header-right__main-menu">
 				<ul class="header-right__list">
 					<li class="header-right__item"><a
-						class="header-right__link home--active" href="./index.html">Trang
+						class="header-right__link home--active" href="${base}/index">Trang
 							chủ</a></li>
 					<li class="header-right__item"><a
-						class="header-right__link product--active" href="./product.html">Sản
+						class="header-right__link product--active" href="${base}/shop">Sản
 							Phẩm</a></li>
 					<li class="header-right__item"><a
-						class="header-right__link blog--active" href="./blog.html">Tin
+						class="header-right__link blog--active" href="${base}/blog">Tin
 							Tức</a></li>
 					<li class="header-right__item"><a
-						class="header-right__link contact--active" href="./contact.html">Liên
+						class="header-right__link contact--active" href="${base}/contact">Liên
 							Hệ</a></li>
 				</ul>
 			</nav>
