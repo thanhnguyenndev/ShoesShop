@@ -13,13 +13,13 @@ import com.example.Shop.Controller.dto.Constant;
 @Configuration //->Bao spring biet day la file cau hinh
 public class ConfigMVC implements WebMvcConfigurer,Constant {
 	
-	public String UPLOAD_FILE_ROOT = "ShoesShop/tree/main/upload/";
+//	public String UPLOAD_FILE_ROOT = "ShoesShop/tree/main/upload/";
 	@Override
 	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
 		//classpath: src/main/resources
 		registry.addResourceHandler("/user/**").addResourceLocations("classpath:/static/user/");
 		registry.addResourceHandler("/manager/**").addResourceLocations("classpath:static/manager/");
-		registry.addResourceHandler("/upload/**").addResourceLocations("classpath:static/upload/"); //lấy thư mục
+		registry.addResourceHandler("/upload/**").addResourceLocations("file:resources/upload/").setCachePeriod(0); //lấy thư mục
 //		registry.addResourceHandler("/upload/**").addResourceLocations("file:" +"/upload/"); //lấy thư mục
 	}
 	
