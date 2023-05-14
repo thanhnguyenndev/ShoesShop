@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.haui.nhom49</groupId>
 	<artifactId>com.shoes.shop</artifactId>
-	<version>1.0</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>com.shoes.shop</name>
 	<description>com.devpro.shop</description>
 	<properties>
