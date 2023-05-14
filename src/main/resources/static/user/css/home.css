@@ -115,7 +115,7 @@
   justify-content: center;
   align-items: center;
   transition: all 0.3s linear;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 991px) {
@@ -467,7 +467,7 @@ button.slick-prev {
 .best-slice__button:visited {
   font-family: "Roboto";
   font-style: normal;
-  font-weight: normal;
+  font-weight: 700;
   background-color: var(--color-red);
   padding: 1rem 2.2rem;
   border-radius: 5px;
@@ -596,13 +596,13 @@ button.slick-prev {
 
   overflow: hidden;
 }
-.feature-carousell button {
-  background-color: var(--color-grey-3);
-}
-.feature-carousell:hover button {
-  color: var(--color-red);
-  background-color: var(--color-grey-4);
-}
+/* .feature-carousell button { */
+/*   background-color: var(--color-red); */
+/* } */
+/* .feature-carousell:hover button { */
+/*   color: var(color-white); */
+/*   background-color: var(--color-red-2); */
+/* } */
 
 @media (max-width: 767px) {
   .feature-carousell button {

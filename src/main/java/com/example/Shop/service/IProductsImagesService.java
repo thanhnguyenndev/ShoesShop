@@ -9,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
 
-import com.example.Shop.entities.ProductsEntity;
 import com.example.Shop.entities.ProductsImagesEntity;
 
 public interface IProductsImagesService {

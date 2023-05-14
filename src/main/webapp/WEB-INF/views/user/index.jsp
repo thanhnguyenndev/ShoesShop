@@ -52,25 +52,29 @@
 			<div class="banner">
 				<div class="bamner-carousell">
 					<div class="bamner-carousell__item">
-						<img src="${base}/user/img/banner11.jpg"
+						<a href="${base}/shop?categoryId=2&keyword=&sort=default"> <img
+							src="${base}/user/img/banner11.jpg"
 							alt="Giảm 10% khi mua giày trong tháng" />
-						<form class="banner-carousell__content">
-							<h1 class="heading-primary">
-								Giảm <span>10%</span><br />khi mua giày trong tháng
-							</h1>
-							<button class="btn btn--red btn--transtion-1">Mua ngay</button>
-						</form>
+							<div class="banner-carousell__content">
+								<h1 class="heading-primary">
+									Giảm <span>10%</span><br />khi mua giày Adidas trong tháng
+								</h1>
+								<button class="btn btn--red btn--transtion-1">Mua ngay</button>
+							</div>
+						</a>
 					</div>
 					<div class="bamner-carousell__item">
-						<img src="${base}/user/img/banner22.jpg"
+						<a href="${base}/shop?categoryId=1&keyword=&sort=default"> <img
+							src="${base}/user/img/banner22.jpg"
 							alt="Giảm 15% với các sản phẩm Nike" />
-						<form
-							class="banner-carousell__content banner-carousell__content--modify">
-							<h1 class="heading-primary">
-								Giảm <span>15%</span><br />với các sản phẩm Nike
-							</h1>
-							<button class="btn btn--red btn--transtion">Mua ngay</button>
-						</form>
+							<div
+								class="banner-carousell__content banner-carousell__content--modify">
+								<h1 class="heading-primary">
+									Giảm <span>15%</span><br />với các sản phẩm Nike
+								</h1>
+								<button class="btn btn--red btn--transtion">Mua ngay</button>
+							</div>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -148,15 +152,17 @@
 											</div>
 											<div class="best-slice__price">
 												<fmt:formatNumber type="number" maxFractionDigits="3"
-													value="${listpr.price}" /> đ
+													value="${listpr.price}" />
+												đ
 											</div>
 											<button class="btn btn--red btn--transtion"
 												onclick="addToCart(${listpr.id},1)">
 												<span>Thêm Vào Giỏ</span><i class="fas fa-cart-plus"></i>
 											</button>
-											
+
 										</div>
 									</div>
+
 								</div>
 							</c:forEach>
 						</div>
@@ -204,111 +210,132 @@
 					<div class="row">
 						<div class="col">
 							<h2 class="heading-secondery" data-aos="fade-up">Giày mới về</h2>
+							<div class="best-slice__list">
 							<div class="container">
 								<div class="row">
 									<div class="col">
 										<div class="feature-carousell" data-aos="fade-up">
 											<div class="best-slice__card">
 												<div class="best-slice__photo">
-													<a href="./details.html"><img
-														src="${base}/user/img/newshoe1.svg" alt="" title="" /></a>
+													<a href="${base}/detail/42"><img
+														src="${base}/user/img/FUTURE_1_4_FGAG_Soccer_Cleats_1.jpg"
+														alt="" title="" /></a>
 												</div>
 												<div class="best-slice__content">
-													<a href="./details.html">
-														<h3 class="best-slice__heading">Adidas COPA</h3>
+													<a href="${base}/detail/42">
+														<h3 class="best-slice__heading">Puma Future 1.4 FG/AG</h3>
 													</a>
 													<div class="best-slice__rate">
 														<i class="fas fa-star"></i><i class="fas fa-star"></i><i
 															class="fas fa-star"></i><i class="fas fa-star"></i><i
 															class="fas fa-star"></i>
 													</div>
-													<div class="best-slice__price">1,590,000 đ</div>
-													<a class="best-slice__button" href="./cart.html"><span>Thêm
-															Vào Giỏ</span><i class="fas fa-cart-plus"></i></a>
+													<div class="best-slice__price">4,000,000 đ</div>
+<!-- 													<a class="best-slice__button" href="./cart.html"><span>Thêm -->
+<!-- 															Vào Giỏ</span><i class="fas fa-cart-plus"></i></a> -->
+													<button class="btn btn--red btn--transtion"
+														onclick="addToCart(${42},1)">
+														<span>Thêm Vào Giỏ</span><i class="fas fa-cart-plus"></i>
+													</button>
 												</div>
 											</div>
-											
-											
+
+
 											<div class="best-slice__card">
 												<div class="best-slice__photo">
-													<a href="./details.html"><img
-														src="${base}/user/img/newshoe2.svg" alt="" title="" /></a>
+													<a href="${base}/detail/21"><img
+														src="${base}/user/img/NikeZoomMercurialDreamSpeedSuperfly9EliteFG.jpg"
+														alt="" title="" /></a>
 												</div>
 												<div class="best-slice__content">
-													<a href="./details.html">
-														<h3 class="best-slice__heading">Puma King Plantium</h3>
+													<a href="${base}/detail/21">
+														<h3 class="best-slice__heading">Nike Zoom Mercurial
+															Dream Speed Superfly 9 Elite FG</h3>
 													</a>
 													<div class="best-slice__rate">
 														<i class="fas fa-star"></i><i class="fas fa-star"></i><i
 															class="fas fa-star"></i><i class="fas fa-star"></i><i
 															class="fas fa-star"></i>
 													</div>
-													<div class="best-slice__price">1,550,000 đ</div>
-													<a class="best-slice__button" href="./cart.html"><span>Thêm
-															Vào Giỏ</span><i class="fas fa-cart-plus"></i></a>
-												</div>
-											</div>
-											<div class="best-slice__card">
-												<div class="best-slice__photo">
-													<a href="./details.html"><img
-														src="${base}/user/img/newshoe3.svg" alt="" title="" /></a>
-												</div>
-												<div class="best-slice__content">
-													<a href="./details.html">
-														<h3 class="best-slice__heading">Nike Tiempo Lengend</h3>
-													</a>
-													<div class="best-slice__rate">
-														<i class="fas fa-star"></i><i class="fas fa-star"></i><i
-															class="fas fa-star"></i><i class="fas fa-star"></i><i
-															class="fas fa-star"></i>
-													</div>
-													<div class="best-slice__price">1,099,000 đ</div>
-													<a class="best-slice__button" href="./cart.html"><span>Thêm
-															Vào Giỏ</span><i class="fas fa-cart-plus"></i></a>
+													<div class="best-slice__price">6,000,000 đ</div>
+													<button class="btn btn--red btn--transtion"
+														onclick="addToCart(${21},1)">
+														<span>Thêm Vào Giỏ</span><i class="fas fa-cart-plus"></i>
+													</button>
 												</div>
 											</div>
 											<div class="best-slice__card">
 												<div class="best-slice__photo">
-													<a href="./details.html"><img
-														src="${base}/user/img/newshoe4.svg" alt="" title="" /></a>
+													<a href="${base}/detail/30"><img
+														src="${base}/user/img/PREDATOR_ACCURACY3_LOW_FIRM_GROUND_BOOTS_2.jpg"
+														alt="" title="" /></a>
 												</div>
 												<div class="best-slice__content">
-													<a href="./details.html">
-														<h3 class="best-slice__heading">Mizuno Morelia</h3>
+													<a href="${base}/detail/30">
+														<h3 class="best-slice__heading">Adidas Predator
+															Accuracy 3 Low Firm Ground Boots</h3>
 													</a>
 													<div class="best-slice__rate">
 														<i class="fas fa-star"></i><i class="fas fa-star"></i><i
 															class="fas fa-star"></i><i class="fas fa-star"></i><i
 															class="fas fa-star"></i>
 													</div>
-													<div class="best-slice__price">999,000 đ</div>
-													<a class="best-slice__button" href="./cart.html"><span>Thêm
-															Vào Giỏ</span><i class="fas fa-cart-plus"></i></a>
+													<div class="best-slice__price">3,400,000 đ</div>
+													<button class="btn btn--red btn--transtion"
+														onclick="addToCart(${30},1)">
+														<span>Thêm Vào Giỏ</span><i class="fas fa-cart-plus"></i>
+													</button>
 												</div>
 											</div>
 											<div class="best-slice__card">
 												<div class="best-slice__photo">
-													<a href="./details.html"><img
-														src="${base}/user/img/newshoe5.svg" alt="Banh Pizza"
-														title="" /></a>
+													<a href="${base}/detail/53"><img
+														src="${base}/user/img/Men_UA_Spotlight_Clone_MC_LE_Black_History_Month_Football_Cleats_1.jpg"
+														alt="" title="" /></a>
 												</div>
 												<div class="best-slice__content">
-													<a href="./details.html">
-														<h3 class="best-slice__heading">Adidas Predator 2020</h3>
+													<a href="${base}/detail/53">
+														<h3 class="best-slice__heading">Under Armour Men's UA
+															Spotlight Clone MC LE Black History Month Football Cleats</h3>
 													</a>
 													<div class="best-slice__rate">
 														<i class="fas fa-star"></i><i class="fas fa-star"></i><i
 															class="fas fa-star"></i><i class="fas fa-star"></i><i
 															class="fas fa-star"></i>
 													</div>
-													<div class="best-slice__price">90,000 đ</div>
-													<a class="best-slice__button" href="./cart.html"><span>Thêm
-															Vào Giỏ</span><i class="fas fa-cart-plus"></i></a>
+													<div class="best-slice__price">4,300,000 đ</div>
+													<button class="btn btn--red btn--transtion"
+														onclick="addToCart(${53},1)">
+														<span>Thêm Vào Giỏ</span><i class="fas fa-cart-plus"></i>
+													</button>
+												</div>
+											</div>
+											<div class="best-slice__card">
+												<div class="best-slice__photo">
+													<a href="${base}/detail/50"><img
+														src="${base}/user/img/Men_UA_Blur_Smoke_2_0_MC_World_Tour_Football_Cleats_2.jpg"
+														alt="" title="" /></a>
+												</div>
+												<div class="best-slice__content">
+													<a href="${base}/detail/50">
+														<h3 class="best-slice__heading">Under Armour Men's UA Blur Smoke 2.0 MC World Tour Football Cleats</h3>
+													</a>
+													<div class="best-slice__rate">
+														<i class="fas fa-star"></i><i class="fas fa-star"></i><i
+															class="fas fa-star"></i><i class="fas fa-star"></i><i
+															class="fas fa-star"></i>
+													</div>
+													<div class="best-slice__price">3,900,000 đ</div>
+													<button class="btn btn--red btn--transtion"
+														onclick="addToCart(${50},1)">
+														<span>Thêm Vào Giỏ</span><i class="fas fa-cart-plus"></i>
+													</button>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
+							</div>
 							</div>
 						</div>
 					</div>

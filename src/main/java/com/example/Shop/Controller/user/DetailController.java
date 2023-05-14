@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.Shop.entities.CategoryEntity;
 import com.example.Shop.entities.ProductsEntity;
 import com.example.Shop.entities.ProductsImagesEntity;
 import com.example.Shop.service.IProductService;

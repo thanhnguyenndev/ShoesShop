@@ -7,12 +7,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.example.Shop.entities.ProductsEntity;
 import com.example.Shop.entities.SaleOrderEntity;
-import com.example.Shop.entities.SaleOrderProductsEntity;
 import com.example.Shop.repository.SaleOderReponsitory;
 import com.example.Shop.service.ISaleOderService;
 
@@ -52,6 +49,7 @@ public class SaleOderService implements ISaleOderService {
 		saleoderRepository.deleteAll();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public SaleOrderEntity getById(Integer id) {
 		return saleoderRepository.getById(id);

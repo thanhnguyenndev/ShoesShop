@@ -18,10 +18,12 @@
 			</div>
 			<div class="header-left__search desktop">
 				<div class="header-left__search-box">
-					<form class="header-left__form" action="#">
-						<input oninput="searchByName(this)" class="header-left__input" type="text" name="txt"
-							placeholder="Tìm kiếm..." /><a class="header-left__link"><i
-							class="fas fa-search header-left__icon"></i></a>
+					<form class="header-left__form" action="${base}/shop" method="GET">
+						<input class="header-left__input" type="text" name="keyword"
+							placeholder="Tìm kiếm..." />
+						<button class="header-left__link" style="border: none; background: transparent;" type="submit">
+							<i class="fas fa-search header-left__icon"></i>
+							</button>
 					</form>
 				</div>
 			</div>
@@ -46,7 +48,7 @@
 			</nav>
 			<div class="header-right__avatar">		
 				<c:choose>
-						<c:when test="${isLogined }">
+						<c:when test="${isLogined}">
 							<a class="nav-item nav-link" style="color:#666666">Welcome ${userLogined.username }</a>
 							<a href="${base }/logout" class="nav-item nav-link style1" style="color:#666666"><i class="fas fa-user"> Logout</i></a>
 						</c:when>
@@ -89,15 +91,6 @@
 		<div class="clone-menu__box"></div>
 		<div class="scroll">
 			<i class="fas fa-arrow-up"></i>
-		</div>
-		<div id="header-right__search-box">
-			<i class="fas fa-times header-right__search-icon"></i>
-			<div class="header-right__search-box-input">
-				<div class="header-right__search-input">
-					<input type="text" placeholder="Tìm kiếm loại bánh..." /><i
-						class="far fa-paper-plane"></i>
-				</div>
-			</div>
 		</div>
 		<div id="header__user">
 			<div class="user__box">

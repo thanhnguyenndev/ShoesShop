@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.example.Shop.entities.CategoryEntity;
-import com.example.Shop.entities.ProductsEntity;
 
 
 @Repository

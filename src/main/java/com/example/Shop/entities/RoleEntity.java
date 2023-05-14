@@ -21,6 +21,11 @@ import org.springframework.security.core.GrantedAuthority;
 public class RoleEntity extends BaseEntity implements GrantedAuthority{	
 	//private static final long serialVersionUID = -4109488814868694331L;
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Column(name = "name", length = 45, nullable = false)
 	private String name;
 

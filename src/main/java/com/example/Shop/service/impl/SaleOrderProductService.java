@@ -46,6 +46,7 @@ public class SaleOrderProductService implements ISaleOrderProductService {
 		saleorprorepo.deleteAll();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public SaleOrderProductsEntity getById(Integer id) {
 		return saleorprorepo.getById(id);

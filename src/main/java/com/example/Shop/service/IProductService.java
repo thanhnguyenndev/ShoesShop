@@ -2,7 +2,6 @@ package com.example.Shop.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -14,8 +13,7 @@ import com.example.Shop.Controller.dto.SearchProduct;
 import com.example.Shop.entities.ProductsEntity;
 
 public interface IProductService {
-	
-	//Liệt kê các function sẽ sử dụng 
+	// Liệt kê các function sẽ sử dụng
 
 	<S extends ProductsEntity> List<S> findAll(Example<S> example, Sort sort);
 
@@ -46,7 +44,7 @@ public interface IProductService {
 	ProductsEntity addProduct(ProductsEntity product, MultipartFile inputAvatar, MultipartFile[] inputPictures)
 			throws Exception;
 
-	Page<ProductsEntity> findByKeywork(String keywork, Pageable pageable);
+	Page<ProductsEntity> findByKeywordd(String keywork, Pageable pageable);
 
 	Page<ProductsEntity> findAll(String keywork, Pageable pageable);
 
@@ -57,16 +55,19 @@ public interface IProductService {
 	Page<ProductsEntity> ProductShop(Pageable pageable);
 
 	ProductsEntity findById2(int id);
-	
+
 	public List<ProductsEntity> findByKeyword(String keywork);
 
-	Page<ProductsEntity> findByTitle(String title,Pageable pageable);
-	
-	Page<ProductsEntity> findProductsByCriteria(Pageable pageable, Integer priceLow, Integer priceHigh,String search,
-			List<Integer> idCategory);
+	Page<ProductsEntity> findByTitle(String title, Pageable pageable);
 
 	Page<ProductsEntity> search(SearchProduct searchProduct);
 
+	Page<ProductsEntity> findByCategoryId(Long categoryId, Pageable pageable);
+
+	Page<ProductsEntity> findByPriceRange(String priceRange, Pageable pageable);
+
+	Page<ProductsEntity> findByCategoryAndPriceRange(Integer categoryId, String priceRange, Pageable pageable);
 	
-	
+	Page<ProductsEntity> searchProducts(Integer categoryId, String priceRange, Pageable pageable);
+
 }

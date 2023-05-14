@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.example.Shop.entities.ContactEntity;
-import com.example.Shop.entities.ProductsEntity;
 
 @Repository
 public interface ContactRepository extends JpaRepository<ContactEntity, Integer>{

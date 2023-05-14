@@ -89,7 +89,7 @@ public class ManagerAddProductController extends BaseController {
 			@PathVariable("productId") int productId) throws IOException {
 
 		// Lấy sp từ db
-		ProductsEntity product = productService.findById2(productId);
+//		ProductsEntity product = productService.findById2(productId);
 		productService.deleteById(productId);
 		// Can lay danh sach category từ db và trả về view qua model
 

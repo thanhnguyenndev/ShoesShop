@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.Shop.Controller.dto.ProductSearch;
 import com.example.Shop.Controller.user.BaseController;
 import com.example.Shop.entities.ProductsEntity;
 import com.example.Shop.service.IProductService;
@@ -55,7 +54,7 @@ public class ManagerProductController extends BaseController {
 		
 
 		if(StringUtils.hasText(keywork)) {
-			resultPage =productService.findByKeywork(keywork, pageable);
+			resultPage =productService.findByKeywordd(keywork, pageable);
 			model.addAttribute("title", keywork);
 		}else {
 			resultPage = productService.findAll(pageable);

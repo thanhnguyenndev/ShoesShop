@@ -38,8 +38,7 @@
 									<img src="${base}/user/img/arrows-banner.svg" alt="" />
 								</div>
 								<a href="">
-									<p
-										class="banner-common__title-2 banner-common__title-2--active">Tin
+									<p class="banner-common__title-2 banner-common__title-2--active">Tin
 										Tức</p>
 								</a>
 							</div>

@@ -492,6 +492,7 @@ h2.heading__primary::before {
   transition: all 0.3s ease-in-out;
 }
  .popula__carousel .slick-prev::before {
+  content:"\f104";
   color: var(--color-grey-2);
   transition: all 0.25s;
   font-family: "Font Awesome 5 Free";

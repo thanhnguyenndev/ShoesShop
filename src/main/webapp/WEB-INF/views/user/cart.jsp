@@ -73,20 +73,19 @@
 								</tr>
 								<c:forEach var="cartItem" items="${cart.cartItems }">
 									<tr class="cart__row">
-
-										<td><button title="cancel" class="icon btn-delete"
+										<td><button title="cancel" class="icon btn-delete" style="border: none; background: transparent;"
 												onclick="deleteProduct(${cartItem.productId})">
 												<i class="far fa-trash-alt"></i>
 											</button></td>
 										<td>
 											<div class="cart__photo">
-												<img src="${base }/upload/${cartItem.productImage}" alt="" />
+												<img src="${base}/upload/${cartItem.productImage}" alt="" />
 											</div>
 										</td>
 										<td>${cartItem.productName }</td>
 										<td><fmt:formatNumber type="number" maxFractionDigits="3"
-												value="${cartItem.priceUnit }" /> đ
-											</div></td>
+												value="${cartItem.priceUnit}" /> đ
+											</td>
 										<td>
 											<div class="cart__select">
 												<span id="span1" class="MINUS${cartItem.productId}">
@@ -101,7 +100,7 @@
 											</div>
 										</td>
 										<td><fmt:formatNumber type="number" maxFractionDigits="3"
-												value="${cartItem.totalPricePerProduct}" /> đ</td>
+												value="${cartItem.quanlity*cartItem.priceUnit}" /> đ</td>
 									</tr>
 								</c:forEach>
 							</table>
@@ -119,7 +118,7 @@
 												</p>
 												<p>
 													<fmt:formatNumber type="number" maxFractionDigits="3"
-														value="${cartItem.priceUnit }" />
+														value="${cartItem.priceUnit}" />
 													đ
 												</p>
 											</div>

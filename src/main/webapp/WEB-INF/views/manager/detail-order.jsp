@@ -140,7 +140,7 @@
                                             </tr>
                                             </thead>
                                             <c:forEach var="s" items="${listOrder }" varStatus="loop">
-                                                <!-- items ở đây là biến mà ta đẩy từ thằng controller -->
+                                                <!-- items ở đây là biến mà ta đẩy từ controller -->
                                                 <tbody>
                                                 <tr>
                                                     <td class="cart-image">

@@ -24,7 +24,6 @@
   </head>
   <style>
   	body{
-  		background-image: url("https://intphcm.com/data/upload/banner-thoi-trang-nam.jpg");
   		background-repeat: no-repeat;
   		background-size: 1400px;
   	}

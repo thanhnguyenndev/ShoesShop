@@ -1,6 +1,5 @@
 package com.example.Shop.Controller.user;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,7 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.Shop.Controller.dto.SimpleContact;
 import com.example.Shop.entities.ContactEntity;
-import com.example.Shop.service.IContactService;
 import com.example.Shop.service.impl.ContactService;
 
 @Controller
@@ -46,7 +44,7 @@ public class ContactController extends BaseController{
 			@ModelAttribute("contact") SimpleContact contact,
 			@RequestParam("inputFile") MultipartFile[] inputFiles) throws IOException { // trùng name trong input
 		// B1: Lay thong tin nguoi dung day len
-		 String name = request.getParameter("txtName");
+//		 String name = request.getParameter("txtName");
 		String nameSpringForm = contact.getTxtName();
 		// TODO-B2: Luu thong tin vao co so du lieu
 

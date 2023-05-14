@@ -1,17 +1,14 @@
 package com.example.Shop.service.impl;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.example.Shop.entities.CategoryEntity;
 import com.example.Shop.entities.UserEntity;
 import com.example.Shop.repository.UserRepository;
 import com.example.Shop.service.IUserService;

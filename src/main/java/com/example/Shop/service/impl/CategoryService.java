@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.Shop.Controller.dto.Constant;
 import com.example.Shop.entities.CategoryEntity;
-import com.example.Shop.entities.ProductsEntity;
 import com.example.Shop.repository.CategoryRepository;
 import com.example.Shop.service.ICategoryService;
 
@@ -87,6 +86,7 @@ public class CategoryService implements ICategoryService,Constant {
 		CategoryRepository.delete(entity);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public CategoryEntity getOne(Integer id) {
 		return CategoryRepository.getOne(id);
@@ -102,6 +102,7 @@ public class CategoryService implements ICategoryService,Constant {
 		CategoryRepository.deleteAll();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public CategoryEntity getById(Integer id) {
 		return CategoryRepository.getById(id);

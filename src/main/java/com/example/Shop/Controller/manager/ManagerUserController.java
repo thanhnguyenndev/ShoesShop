@@ -1,7 +1,5 @@
 package com.example.Shop.Controller.manager;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -100,7 +98,7 @@ public class ManagerUserController extends BaseController {
 	public String edit(final Model model, final HttpServletRequest request, final HttpServletResponse response,
 			final @ModelAttribute("userEdit") UserEntity userEdit) throws Exception {
 		// Luu product vao db
-		List<RoleEntity> list = userEdit.getRoles();
+//		List<RoleEntity> list = userEdit.getRoles();
 		String role2 = request.getParameter("rolee");
 		RoleEntity role = new RoleEntity();
 		role.setName(role2);

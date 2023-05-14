@@ -12,7 +12,6 @@ import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuer
 import org.springframework.stereotype.Service;
 
 import com.example.Shop.Controller.dto.Constant;
-import com.example.Shop.entities.ProductsEntity;
 import com.example.Shop.entities.ProductsImagesEntity;
 import com.example.Shop.repository.ProductImageRepository;
 import com.example.Shop.service.IProductsImagesService;
@@ -78,6 +77,7 @@ public class ProductsImagesService implements IProductsImagesService,Constant {
 		return productimageRepo.findAll(example, pageable);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void deleteInBatch(Iterable<ProductsImagesEntity> entities) {
 		productimageRepo.deleteInBatch(entities);
@@ -114,6 +114,7 @@ public class ProductsImagesService implements IProductsImagesService,Constant {
 		productimageRepo.deleteAllById(ids);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public ProductsImagesEntity getOne(Integer id) {
 		return productimageRepo.getOne(id);
@@ -129,6 +130,7 @@ public class ProductsImagesService implements IProductsImagesService,Constant {
 		productimageRepo.deleteAll();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public ProductsImagesEntity getById(Integer id) {
 		return productimageRepo.getById(id);

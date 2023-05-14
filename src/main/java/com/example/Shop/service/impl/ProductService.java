@@ -1,13 +1,11 @@
 package com.example.Shop.service.impl;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.Predicate;
-
+import com.example.Shop.Controller.dto.ProductsSpecifications;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -21,10 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.Shop.Controller.dto.Constant;
 import com.example.Shop.Controller.dto.SearchProduct;
-import com.example.Shop.Controller.specification.ProductSpecification;
 import com.example.Shop.entities.ProductsEntity;
 import com.example.Shop.entities.ProductsImagesEntity;
-import com.example.Shop.repository.CategoryRepository;
 import com.example.Shop.repository.ProductRepository;
 import com.example.Shop.service.IProductService;
 
@@ -33,9 +29,6 @@ public class ProductService implements IProductService, Constant {
 
 	@Autowired
 	ProductRepository productRepo;
-
-	@Autowired
-	private CategoryRepository categoryRepository;
 
 	public void deleteAllById(Iterable<? extends Integer> integers) {
 		productRepo.deleteAllById(integers);
@@ -62,7 +55,7 @@ public class ProductService implements IProductService, Constant {
 	}
 
 	@Override
-	public Page<ProductsEntity> findByKeywork(String keywork, Pageable pageable) {
+	public Page<ProductsEntity> findByKeywordd(String keywork, Pageable pageable) {
 		return productRepo.findByKeywork(keywork, pageable);
 	}
 
@@ -132,6 +125,7 @@ public class ProductService implements IProductService, Constant {
 		productRepo.deleteAll();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public ProductsEntity getById(Integer id) {
 		return productRepo.getById(id);
@@ -228,14 +222,6 @@ public class ProductService implements IProductService, Constant {
 		return productRepo.findByKeyword(keywork);
 	}
 
-	// Đang sửa
-	@Override
-	public Page<ProductsEntity> findProductsByCriteria(Pageable pageable, Integer priceLow, Integer priceHigh,String search,
-			List<Integer> idCategory) {
-
-		Page<ProductsEntity> page = productRepo.findAll(ProductSpecification.filterBy(priceLow, priceHigh, idCategory, search),pageable);
-		return page;
-	}
 
 	@Override
 	public Page<ProductsEntity> search(SearchProduct searchProduct) {
@@ -257,21 +243,6 @@ public class ProductService implements IProductService, Constant {
 		} else {
 			sort = Sort.unsorted();
 		}
-//		ProductsEntity productsEntity = new ProductsEntity();
-//		
-//		ExampleMatcher matcher = ExampleMatcher.matching().mat
-//				Example<ProductsEntity> example = Example.of(productsEntity, matcher);
-
-//		Specification<ProductsEntity> specification = (root, query, criteriaBuilder) ->{
-//			List<Predicate> predicates = new ArrayList<>();
-//			if (categoryIds!=null && !categoryIds.isEmpty()) {
-//				predicates.add(criteriaBuilder.and(criteriaBuilder.in(root.get("categoryId"), categoryIds)));
-//            }  
-//			if(nameProduct!=null && !nameProduct.isEmpty()) {
-//                  predicates.add(criteriaBuilder.and(criteriaBuilder.like(root.get("title"), "%"+nameProduct+"%")));
-//             }
-//			return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
-//		};
 
 		Specification<ProductsEntity> specificationCategory = (root, query, criteriaBuilder) -> {
 			if (categoryIds != null && !categoryIds.isEmpty()) {
@@ -314,4 +285,56 @@ public class ProductService implements IProductService, Constant {
 		return productRepo.findAll(specification, pageable);
 	}
 
+	@Override
+	public Page<ProductsEntity> findByCategoryId(Long categoryId, Pageable pageable) {
+		return productRepo.findByCategoryId(categoryId, pageable);
+	}
+
+
+	@Override
+	public Page<ProductsEntity> findByPriceRange(String priceRange, Pageable pageable) {
+		if (!priceRange.matches("^\\d+(\\.\\d+)?-\\d+(\\.\\d+)?$")) {
+			throw new IllegalArgumentException("Invalid price range format: " + priceRange);
+		}
+
+		String[] prices = priceRange.split("-");
+		BigDecimal priceLow = new BigDecimal(prices[0]);
+		BigDecimal priceHigh = new BigDecimal(prices[1]);
+		return productRepo.findByPriceBetween(priceLow, priceHigh, pageable);
+	}
+
+
+	@Override
+	public Page<ProductsEntity> findByCategoryAndPriceRange(Integer categoryId, String priceRange, Pageable pageable) {
+		String[] prices = priceRange.split("-");
+		BigDecimal priceLow = new BigDecimal(prices[0]);
+		BigDecimal priceHigh = new BigDecimal(prices[1]);
+		return productRepo.findByCategoryIdAndPriceBetween(categoryId, priceLow, priceHigh, pageable);
+	}
+	@Override
+	public Page<ProductsEntity> searchProducts(Integer categoryId, String priceRange, Pageable pageable) {
+		Specification<ProductsEntity> spec = Specification.where(null);
+		if (categoryId != null) {
+			spec = spec.and(ProductsSpecifications.hasCategoryId(categoryId));
+		}
+		if (priceRange != null) {
+			switch (priceRange) {
+				case "duoi1m":
+					spec = spec.and(ProductsSpecifications.hasPriceLessThan(1000000L));
+					break;
+				case "tu1mden3m":
+					spec = spec.and(ProductsSpecifications.hasPriceBetween(1000000L, 3000000L));
+					break;
+				case "tu3mden5m":
+					spec = spec.and(ProductsSpecifications.hasPriceBetween(3000000L, 5000000L));
+					break;
+				case "tren5m":
+					spec = spec.and(ProductsSpecifications.hasPriceGreaterThan(5000000L));
+					break;
+				default:
+					break;
+			}
+		}
+		return productRepo.findAll(spec, pageable);
+	}
 }

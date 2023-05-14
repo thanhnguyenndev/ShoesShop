@@ -2,7 +2,6 @@ package com.example.Shop.Controller.user;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,8 +48,7 @@ public class CartController extends BaseController {
 	public String checkoutView(final Model model, final HttpServletRequest request, final HttpServletResponse response)
 			throws IOException {
 		model.addAttribute("totalprice", this.getTotalPrice(request));
-
-		return "user/checkout"; // -> duong dan toi VIEW.
+			return "user/checkout"; // -> duong dan toi VIEW.
 	}
 
 	@RequestMapping(value = { "/pay" }, method = RequestMethod.POST, params = "thanhtoan1") // -> action
@@ -74,7 +71,7 @@ public class CartController extends BaseController {
 		saleOrderEntity.setCustomerPhone(customerPhone);
 		saleOrderEntity.setCustomerEmail(customerEmail);
 //		LocalDate date = LocalDate.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
+//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
 //		  String text = date.format(formatter);
 //		  Date date = new Date(System.currentTimeMillis());
 		saleOrderEntity.setCreatedDate(new Date(System.currentTimeMillis()));
@@ -122,14 +119,16 @@ public class CartController extends BaseController {
 			throws IOException {
 
 		model.addAttribute("totalprice", this.getTotalPrice(request));
-
+		
 		// Lấy danh sách categories
 		List<CategoryEntity> categories = categoriesService.findAll();
 
 		// Đẩy xuống tầng view
 		model.addAttribute("categories", categories);
-
-		return "user/cart"; // -> duong dan toi VIEW.
+		if(isLogined()) {
+			return "user/cart"; // -> duong dan toi VIEW.
+		}
+		return "redirect:/login";
 	}
 
 	private int getTotalItems(final HttpServletRequest request) {
@@ -150,7 +149,6 @@ public class CartController extends BaseController {
 
 		return total;
 	}
-
 	private Double getTotalPrice(HttpServletRequest request) {
 
 		HttpSession httpSession = request.getSession();
@@ -172,12 +170,10 @@ public class CartController extends BaseController {
 	@RequestMapping(value = { "/cart/add" }, method = RequestMethod.POST)
 	public ResponseEntity<Map<String, Object>> addToCart(final ModelMap model, final HttpServletRequest request,
 			final HttpServletResponse response, @RequestBody CartItem newItem) {
-
 		// Section tương tự như kiểu map và được lưu trên main memory
 		// Dữ liệu đã lưu trên session không cần gọi qua model mà có thể sử dụng trực
 		// tiếp trên jsp
 		HttpSession session = request.getSession();
-//		String soLuongTon = request.getParameter("soluongton");
 		// Lấy thông tin giỏ hàng
 		Cart cart = null;
 		if (session.getAttribute("cart") != null) {
@@ -203,7 +199,6 @@ public class CartController extends BaseController {
 				}
 			}
 		}
-
 		// Nếu sản phẩm chưa có trong giỏ hàng
 		if (!isExists) {
 			ProductsEntity productInDb = productService.getById(newItem.getProductId());
@@ -241,7 +236,7 @@ public class CartController extends BaseController {
 			@RequestBody CartItem cartItem) {
 
 		// Lấy thông tin từ giỏ hàng
-		HttpSession httpSession = request.getSession();
+//		HttpSession httpSession = request.getSession();
 		return null;
 	}
 
@@ -254,21 +249,19 @@ public class CartController extends BaseController {
 
 		List<CartItem> cartItems = cart.getCartItems();
 		Double totalPrice = 0d;
-//		Double totalPricePerProduct = 0d;
 		for (int i = 0; i < cartItems.size(); i++) {
 			if (cartItems.get(i).getProductId() == cartItem.getProductId()) {
 				cartItems.remove(i);
 				break;
 			}
 		}
+		
 		for (CartItem item : cartItems) {
 			totalPrice += item.getPriceUnit().doubleValue();
 		}
-//		totalPricePerProduct = cartItem.getPriceUnit().doubleValue()*cartItem.getQuanlity();
 
 		httpSession.setAttribute("totalItems", getTotalItems(request));
 		httpSession.setAttribute("totalPrice", totalPrice);
-//		httpSession.setAttribute("totalPricePerProduct", totalPricePerProduct);
 
 		Map<String, Object> jsonResult = new HashMap<String, Object>();
 		jsonResult.put("code", 200);

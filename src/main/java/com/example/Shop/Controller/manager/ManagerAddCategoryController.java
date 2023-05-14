@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.Shop.Controller.user.BaseController;
 import com.example.Shop.entities.CategoryEntity;
-import com.example.Shop.service.IProductService;
 import com.example.Shop.service.impl.CategoryService;
 
 @Controller
@@ -24,8 +23,6 @@ public class ManagerAddCategoryController extends BaseController{
 	@Autowired
 	private CategoryService categoriesService;
 	
-	@Autowired
-	private IProductService productService;
 	
 	@RequestMapping(value = { "/admin/add-category" }, method = RequestMethod.GET) // -> action
 	public String addCategory(final Model model,

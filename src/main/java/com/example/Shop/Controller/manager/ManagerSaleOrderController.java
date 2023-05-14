@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.Shop.Controller.user.BaseController;
-import com.example.Shop.entities.CategoryEntity;
 import com.example.Shop.entities.SaleOrderEntity;
 import com.example.Shop.entities.SaleOrderProductsEntity;
 import com.example.Shop.service.ISaleOderService;
