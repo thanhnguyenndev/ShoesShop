@@ -9,14 +9,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import com.example.Shop.Controller.dto.Constant;
 import com.example.Shop.entities.CategoryEntity;
 import com.example.Shop.repository.CategoryRepository;
 import com.example.Shop.service.ICategoryService;
 
 @Service
-public class CategoryService implements ICategoryService,Constant {
+public class CategoryService implements ICategoryService {
 	
 	
 	@Autowired

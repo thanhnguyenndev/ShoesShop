@@ -17,7 +17,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.Shop.Controller.dto.Constant;
 import com.example.Shop.Controller.dto.SearchProduct;
 import com.example.Shop.entities.ProductsEntity;
 import com.example.Shop.entities.ProductsImagesEntity;
@@ -25,7 +24,7 @@ import com.example.Shop.repository.ProductRepository;
 import com.example.Shop.service.IProductService;
 
 @Service
-public class ProductService implements IProductService, Constant {
+public class ProductService implements IProductService {
 
 	@Autowired
 	ProductRepository productRepo;
@@ -136,6 +135,7 @@ public class ProductService implements IProductService, Constant {
 		return productRepo.findAll(example, sort);
 	}
 
+	@SuppressWarnings("null")
 	private boolean isEmptyUploadFile(MultipartFile[] images) {
 		if (images == null || images.length <= 0)
 			return true;
@@ -146,6 +146,7 @@ public class ProductService implements IProductService, Constant {
 		return false;
 	}
 
+	@SuppressWarnings("null")
 	private boolean isEmptyUploadFile(MultipartFile image) {
 		return image == null || image.getOriginalFilename().isEmpty();
 	}
@@ -154,7 +155,7 @@ public class ProductService implements IProductService, Constant {
 	public ProductsEntity addProduct(ProductsEntity product, MultipartFile inputAvatar, MultipartFile[] inputPictures)
 			throws Exception {
 		if (!isEmptyUploadFile(inputAvatar)) {
-			String pathToFile = UPLOAD_FILE_ROOT + "/product/avatar/"
+			String pathToFile = System.getProperty("user.dir")+"/src/main/resources/static/upload" + "/product/avatar/"
 
 					+ inputAvatar.getOriginalFilename();
 			inputAvatar.transferTo(new File(pathToFile));
@@ -164,7 +165,7 @@ public class ProductService implements IProductService, Constant {
 		// product imgages
 		// có đẩy pictures ???
 		if (!isEmptyUploadFile(inputPictures)) {
-			String pathToFile = UPLOAD_FILE_ROOT + "/product/pictures/";
+			String pathToFile = System.getProperty("user.dir")+"/src/main/resources/static/upload" + "/product/pictures/";
 
 			for (MultipartFile pic : inputPictures) {
 				pic.transferTo(new File(pathToFile + pic.getOriginalFilename()));
@@ -188,11 +189,11 @@ public class ProductService implements IProductService, Constant {
 		// có đẩy avartar ???
 		if (!isEmptyUploadFile(productAvatar)) {
 			// xóa avatar trong folder lên
-			new File(UPLOAD_FILE_ROOT + productOnDb.getAvatar()).delete();
+			new File(System.getProperty("user.dir")+"/src/main/resources/static/upload" + productOnDb.getAvatar()).delete();
 
 			// add avartar moi
 			productAvatar.transferTo(
-					new File(UPLOAD_FILE_ROOT + "\\product\\avatar\\" + productAvatar.getOriginalFilename()));
+					new File(System.getProperty("user.dir")+"/src/main/resources/static/upload" + "\\product\\avatar\\" + productAvatar.getOriginalFilename()));
 			product.setAvatar("/product/avatar/" + productAvatar.getOriginalFilename());
 		} else {
 			// su dung lai avatar cu
@@ -203,7 +204,7 @@ public class ProductService implements IProductService, Constant {
 		if (!isEmptyUploadFile(productImages)) {
 
 			for (MultipartFile pic : productImages) {
-				pic.transferTo(new File(UPLOAD_FILE_ROOT + "\\product\\pictures\\" + pic.getOriginalFilename()));
+				pic.transferTo(new File(System.getProperty("user.dir")+"/src/main/resources/static/upload" + "\\product\\pictures\\" + pic.getOriginalFilename()));
 
 				ProductsImagesEntity pi = new ProductsImagesEntity();
 				pi.setPath("/product/pictures/" + pic.getOriginalFilename());

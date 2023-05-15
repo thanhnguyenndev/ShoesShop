@@ -8,10 +8,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-import com.example.Shop.Controller.dto.Constant;
-
 @Configuration //->Bao spring biet day la file cau hinh
-public class ConfigMVC implements WebMvcConfigurer,Constant {
+public class ConfigMVC implements WebMvcConfigurer {
 	
 //	public String UPLOAD_FILE_ROOT = "ShoesShop/tree/main/upload/";
 	@Override
