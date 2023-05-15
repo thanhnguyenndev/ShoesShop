@@ -41,9 +41,6 @@ public interface ProductRepository extends JpaRepository<ProductsEntity, Integer
 			+ " OR e.price LIKE %?1%" + " OR e.short_description LIKE %?1%"
 			+ " OR e.detail_description LIKE %?1%", nativeQuery = true)
 	public List<ProductsEntity> findByKeyword(String keywork);
-
-	@Query("SELECT DISTINCT s.value FROM SizeEntity s")
-	List<String> findAllSizes();
 	
 	Page<ProductsEntity> findByCategoryId(Long categoryId, Pageable pageable);
 
