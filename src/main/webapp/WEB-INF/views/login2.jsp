@@ -103,7 +103,6 @@
 			<div class="group-input">
 				<input type="text" placeholder="User name" id="username"
 					name="username" />
-
 			</div>
 			<div class="group-input group-last">
 				<input type="password" placeholder="Password" id="password"
