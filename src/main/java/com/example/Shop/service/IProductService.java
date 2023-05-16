@@ -67,7 +67,7 @@ public interface IProductService {
 	Page<ProductsEntity> findByPriceRange(String priceRange, Pageable pageable);
 
 	Page<ProductsEntity> findByCategoryAndPriceRange(Integer categoryId, String priceRange, Pageable pageable);
-	
-	Page<ProductsEntity> searchProducts(Integer categoryId, String priceRange, Pageable pageable);
+
+	Page<ProductsEntity> searchProducts(Integer categoryId, String priceRange, String keyword, Pageable pageable);
 
 }

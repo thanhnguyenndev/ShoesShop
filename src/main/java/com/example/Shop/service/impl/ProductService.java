@@ -155,7 +155,8 @@ public class ProductService implements IProductService {
 	public ProductsEntity addProduct(ProductsEntity product, MultipartFile inputAvatar, MultipartFile[] inputPictures)
 			throws Exception {
 		if (!isEmptyUploadFile(inputAvatar)) {
-			String pathToFile = System.getProperty("user.dir")+"/src/main/resources/static/upload" + "/product/avatar/"
+			String pathToFile = System.getProperty("user.dir") + "/src/main/resources/static/upload"
+					+ "/product/avatar/"
 
 					+ inputAvatar.getOriginalFilename();
 			inputAvatar.transferTo(new File(pathToFile));
@@ -165,7 +166,8 @@ public class ProductService implements IProductService {
 		// product imgages
 		// có đẩy pictures ???
 		if (!isEmptyUploadFile(inputPictures)) {
-			String pathToFile = System.getProperty("user.dir")+"/src/main/resources/static/upload" + "/product/pictures/";
+			String pathToFile = System.getProperty("user.dir") + "/src/main/resources/static/upload"
+					+ "/product/pictures/";
 
 			for (MultipartFile pic : inputPictures) {
 				pic.transferTo(new File(pathToFile + pic.getOriginalFilename()));
@@ -189,11 +191,12 @@ public class ProductService implements IProductService {
 		// có đẩy avartar ???
 		if (!isEmptyUploadFile(productAvatar)) {
 			// xóa avatar trong folder lên
-			new File(System.getProperty("user.dir")+"/src/main/resources/static/upload" + productOnDb.getAvatar()).delete();
+			new File(System.getProperty("user.dir") + "/src/main/resources/static/upload" + productOnDb.getAvatar())
+					.delete();
 
 			// add avartar moi
-			productAvatar.transferTo(
-					new File(System.getProperty("user.dir")+"/src/main/resources/static/upload" + "\\product\\avatar\\" + productAvatar.getOriginalFilename()));
+			productAvatar.transferTo(new File(System.getProperty("user.dir") + "/src/main/resources/static/upload"
+					+ "\\product\\avatar\\" + productAvatar.getOriginalFilename()));
 			product.setAvatar("/product/avatar/" + productAvatar.getOriginalFilename());
 		} else {
 			// su dung lai avatar cu
@@ -204,7 +207,8 @@ public class ProductService implements IProductService {
 		if (!isEmptyUploadFile(productImages)) {
 
 			for (MultipartFile pic : productImages) {
-				pic.transferTo(new File(System.getProperty("user.dir")+"/src/main/resources/static/upload" + "\\product\\pictures\\" + pic.getOriginalFilename()));
+				pic.transferTo(new File(System.getProperty("user.dir") + "/src/main/resources/static/upload"
+						+ "\\product\\pictures\\" + pic.getOriginalFilename()));
 
 				ProductsImagesEntity pi = new ProductsImagesEntity();
 				pi.setPath("/product/pictures/" + pic.getOriginalFilename());
@@ -222,7 +226,6 @@ public class ProductService implements IProductService {
 		// TODO Auto-generated method stub
 		return productRepo.findByKeyword(keywork);
 	}
-
 
 	@Override
 	public Page<ProductsEntity> search(SearchProduct searchProduct) {
@@ -258,7 +261,7 @@ public class ProductService implements IProductService {
 			}
 			return null;
 		};
-		
+
 		Specification<ProductsEntity> specificationPrice = (root, query, criteriaBuilder) -> {
 			if (productPrice != null && (productPrice < 1000000)) {
 				return criteriaBuilder.lessThan(root.get("price"), 1000000);
@@ -278,7 +281,7 @@ public class ProductService implements IProductService {
 
 		Specification<ProductsEntity> specification = Specification.where(specificationCategory);
 
-		if (specificationNameProduct != null && specificationPrice!=null) {
+		if (specificationNameProduct != null && specificationPrice != null) {
 			specification.and(specificationNameProduct).and(specificationPrice);
 		}
 
@@ -290,7 +293,6 @@ public class ProductService implements IProductService {
 	public Page<ProductsEntity> findByCategoryId(Long categoryId, Pageable pageable) {
 		return productRepo.findByCategoryId(categoryId, pageable);
 	}
-
 
 	@Override
 	public Page<ProductsEntity> findByPriceRange(String priceRange, Pageable pageable) {
@@ -304,7 +306,6 @@ public class ProductService implements IProductService {
 		return productRepo.findByPriceBetween(priceLow, priceHigh, pageable);
 	}
 
-
 	@Override
 	public Page<ProductsEntity> findByCategoryAndPriceRange(Integer categoryId, String priceRange, Pageable pageable) {
 		String[] prices = priceRange.split("-");
@@ -312,29 +313,34 @@ public class ProductService implements IProductService {
 		BigDecimal priceHigh = new BigDecimal(prices[1]);
 		return productRepo.findByCategoryIdAndPriceBetween(categoryId, priceLow, priceHigh, pageable);
 	}
+
 	@Override
-	public Page<ProductsEntity> searchProducts(Integer categoryId, String priceRange, Pageable pageable) {
+	public Page<ProductsEntity> searchProducts(Integer categoryId, String priceRange, String keyword,
+			Pageable pageable) {
 		Specification<ProductsEntity> spec = Specification.where(null);
 		if (categoryId != null) {
 			spec = spec.and(ProductsSpecifications.hasCategoryId(categoryId));
 		}
 		if (priceRange != null) {
 			switch (priceRange) {
-				case "duoi1m":
-					spec = spec.and(ProductsSpecifications.hasPriceLessThan(1000000L));
-					break;
-				case "tu1mden3m":
-					spec = spec.and(ProductsSpecifications.hasPriceBetween(1000000L, 3000000L));
-					break;
-				case "tu3mden5m":
-					spec = spec.and(ProductsSpecifications.hasPriceBetween(3000000L, 5000000L));
-					break;
-				case "tren5m":
-					spec = spec.and(ProductsSpecifications.hasPriceGreaterThan(5000000L));
-					break;
-				default:
-					break;
+			case "duoi1m":
+				spec = spec.and(ProductsSpecifications.hasPriceLessThan(1000000L));
+				break;
+			case "tu1mden3m":
+				spec = spec.and(ProductsSpecifications.hasPriceBetween(1000000L, 3000000L));
+				break;
+			case "tu3mden5m":
+				spec = spec.and(ProductsSpecifications.hasPriceBetween(3000000L, 5000000L));
+				break;
+			case "tren5m":
+				spec = spec.and(ProductsSpecifications.hasPriceGreaterThan(5000000L));
+				break;
+			default:
+				break;
 			}
+		}
+		if (keyword != null) {
+			spec.and(ProductsSpecifications.hasKeyword(keyword));
 		}
 		return productRepo.findAll(spec, pageable);
 	}

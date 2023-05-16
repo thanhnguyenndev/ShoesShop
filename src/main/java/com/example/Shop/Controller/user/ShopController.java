@@ -61,15 +61,10 @@ public class ShopController extends BaseController {
 			break;
 		}
 		
-		if (categoryId != null || priceRange != null) {
-			resultPage = productServices.searchProducts(categoryId, priceRange, pageable);
+		if (categoryId != null || priceRange != null || keyword != null) {
+			resultPage = productServices.searchProducts(categoryId, priceRange, keyword, pageable);
 		} else {
-			if (StringUtils.hasText(keyword)) {
-				model.addAttribute("title", keyword);
-				resultPage = productServices.findByKeywordd(keyword, pageable);
-			} else {
-				resultPage = productservice.findAll(pageable);
-			}
+			resultPage = productservice.findAll(pageable);
 		}
 
 		int totalPages = resultPage.getTotalPages();
