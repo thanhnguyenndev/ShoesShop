@@ -340,7 +340,7 @@ public class ProductService implements IProductService {
 			}
 		}
 		if (keyword != null) {
-			spec.and(ProductsSpecifications.hasKeyword(keyword));
+			spec = spec.and(ProductsSpecifications.hasKeyword(keyword));
 		}
 		return productRepo.findAll(spec, pageable);
 	}
